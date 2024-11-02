@@ -1,0 +1,40 @@
+@page "/"
+@model Cringasu_Mihai_Lab2.Pages.Books.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p><a asp-page="Create">Create New</a></p>
+
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by Book Title / Author Name:
+            <input type="text" name="searchString" value="@Model.CurrentFilter" />
+            <input type="submit" value="Search" class="btn btn-primary" /> |
+            <a asp-page="./Index">Back to full List</a>
+        </p>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.TitleSort">
+                    @Html.DisplayNameFor(model => model.BookD.Books.First().Title)
+                </a>
+            </th>
+            <th>@Html.DisplayNameFor(model => model.BookD.Books.First().Price)</th>
+            <th>@Html.DisplayNameFor(model => model.BookD.Books.First().PublishingDate)</th>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="@Model.AuthorSort">
+                    @Html.DisplayNameFor(model => model.BookD.Books.First().Author.FullName)
+                </a>
+            </th>
+        </tr>
+    </thead>
+</table>
